@@ -9,6 +9,8 @@ module.exports = {
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:qwik/recommended',
+    'plugin:tailwindcss/recommended',
+    'prettier',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -20,7 +22,7 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: ['@typescript-eslint'],
+  plugins: ['@typescript-eslint', 'tailwindcss'],
   rules: {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
@@ -37,5 +39,6 @@ module.exports = {
     'no-console': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
     '@typescript-eslint/consistent-type-imports': 'warn',
+    'tailwindcss/no-custom-classname': 'off',
   },
 };

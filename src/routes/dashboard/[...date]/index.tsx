@@ -118,12 +118,12 @@ export default component$(() => {
 
   return (
     <div class="container mx-auto min-h-[calc(100dvh-52px-72px)] px-4 md:px-0">
-      <div class="mt-4 flex items-center justify-between border-b-2 px-2 pb-4">
-        <h1 class="text-xl font-bold md:text-2xl">
-          {location.params.date || new Date().toISOString().slice(0, 10)}
+      <div class="mt-4 border-b-2 px-2 pb-4 md:flex md:items-center md:justify-between">
+        <h1 class="text-center text-xl font-bold md:text-left md:text-2xl">
+          {location.params.date || new Date().toISOString().slice(0, 10)}{' '}
           の売上データ
         </h1>
-        <ul class="flex items-center gap-2">
+        <ul class="mt-2 flex items-center justify-center gap-3 md:mt-0 md:justify-end">
           <li class="">
             <Link
               href={`/dashboard/${getYesterdayFromISOString(

@@ -6,7 +6,7 @@ import { Gauge } from '~/components/icons/gauge';
 export default component$(() => {
   return (
     <div class="min-h-[calc(100dvh-52px-72px)]">
-      <div class="grid auto-rows-fr grid-cols-2 gap-10 p-10">
+      <div class="grid gap-10 p-10 md:grid-cols-2">
         <div>
           <Link
             href="/dashboard"

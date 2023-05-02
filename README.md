@@ -32,10 +32,10 @@ Inside your project, you'll see the following directory structure:
 
 ## Add Integrations and deployment
 
-Use the `npm run qwik add` command to add additional integrations. Some examples of integrations include: Cloudflare, Netlify or Express server, and the [Static Site Generator (SSG)](https://qwik.builder.io/qwikcity/guides/static-site-generation/).
+Use the `yarn qwik add` command to add additional integrations. Some examples of integrations include: Cloudflare, Netlify or Express server, and the [Static Site Generator (SSG)](https://qwik.builder.io/qwikcity/guides/static-site-generation/).
 
 ```shell
-npm run qwik add # or `yarn qwik add`
+yarn qwik add # or `yarn qwik add`
 ```
 
 ## Development
@@ -53,7 +53,7 @@ npm start # or `yarn start`
 The preview command will create a production build of the client modules, a production build of `src/entry.preview.tsx`, and run a local server. The preview server is only for convenience to locally preview a production build, and it should not be used as a production server.
 
 ```shell
-npm run preview # or `yarn preview`
+yarn preview # or `yarn preview`
 ```
 
 ## Production
@@ -61,7 +61,7 @@ npm run preview # or `yarn preview`
 The production build will generate client and server modules by running both client and server build commands. Additionally, the build command will use Typescript to run a type check on the source code.
 
 ```shell
-npm run build # or `yarn build`
+yarn build # or `yarn build`
 ```
 
 ## Cloudflare Pages
@@ -69,7 +69,7 @@ npm run build # or `yarn build`
 Cloudflare's [wrangler](https://github.com/cloudflare/wrangler) CLI can be used to preview a production build locally. To start a local server, run:
 
 ```
-npm run serve
+yarn serve
 ```
 
 Then visit [http://localhost:8787/](http://localhost:8787/)
@@ -80,7 +80,7 @@ Then visit [http://localhost:8787/](http://localhost:8787/)
 
 If you don't already have an account, then [create a Cloudflare account here](https://dash.cloudflare.com/sign-up/pages). Next go to your dashboard and follow the [Cloudflare Pages deployment guide](https://developers.cloudflare.com/pages/framework-guides/deploy-anything/).
 
-Within the projects "Settings" for "Build and deployments", the "Build command" should be `npm run build`, and the "Build output directory" should be set to `dist`.
+Within the projects "Settings" for "Build and deployments", the "Build command" should be `yarn build`, and the "Build output directory" should be set to `dist`.
 
 ### Function Invocation Routes
 
@@ -110,3 +110,13 @@ By default, the Cloudflare pages adaptor _does not_ include a `public/_routes.js
 In the above example, it's saying _all_ pages should be SSR'd. However, the root static files such as `/favicon.ico` and any static assets in `/build/*` should be excluded from the Functions, and instead treated as a static file.
 
 In most cases the generated `dist/_routes.json` file is ideal. However, if you need more granular control over each path, you can instead provide you're own `public/_routes.json` file. When the project provides its own `public/_routes.json` file, then the Cloudflare adaptor will not auto-generate the routes config and instead use the committed one within the `public` directory.
+
+## Deno Server
+
+This app has a minimal [Deno server](https://deno.com/manual/examples/http_server) implementation. After running a full build, you can preview the build using the command:
+
+```
+yarn serve
+```
+
+Then visit [http://localhost:8080/](http://localhost:8080/)

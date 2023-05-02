@@ -45,7 +45,6 @@
   },
   "dependencies": {
     "apexcharts": "^3.39.0",
-    "daisyui": "^2.51.6",
     "microcms-js-sdk": "^2.3.3",
     "qwik-image": "^0.0.3",
     "wc-toast": "^1.2.9"

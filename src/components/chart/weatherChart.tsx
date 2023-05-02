@@ -93,7 +93,9 @@ export default component$<WeatherChartProps>(
 
     return (
       <div class="grow">
-        <p class="mb-4 text-center font-bold">{location}付近の天気予報</p>
+        <p class="mb-4 text-center font-bold">
+          {location}付近の天気予報（{new Date().toISOString().slice(0, 10)}）
+        </p>
         <div class="relative overflow-x-auto rounded">
           <table class="w-full">
             <thead>

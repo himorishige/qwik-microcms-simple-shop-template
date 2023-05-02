@@ -1,5 +1,6 @@
 import { $, component$ } from '@builder.io/qwik';
 import {
+  Link,
   routeLoader$,
   useLocation,
   type DocumentHead,
@@ -10,7 +11,13 @@ import WeatherChart from '~/components/chart/weatherChart';
 import { Download } from '~/components/icons/download';
 import { useConfigDataLoader } from '~/routes/layout';
 import type { ItemObject, SaleObject } from '~/types/sale';
-import { arrayToCSV, calculateItemStats, transformData } from '~/utils/chart';
+import {
+  arrayToCSV,
+  calculateItemStats,
+  getTomorrowFromISOString,
+  getYesterdayFromISOString,
+  transformData,
+} from '~/utils/chart';
 
 export const useWeatherDataLoader = routeLoader$(async (requestEvent) => {
   try {
@@ -111,10 +118,47 @@ export default component$(() => {
 
   return (
     <div class="container mx-auto px-4 md:px-0">
-      <h1 class="mt-4 border-b-2 pb-4 text-xl font-bold md:mt-8 md:text-2xl">
-        {location.params.date || new Date().toISOString().slice(0, 10)}
-        の売上データ
-      </h1>
+      <div class="mt-4 flex items-center justify-between border-b-2 px-2 pb-4">
+        <h1 class="text-xl font-bold md:text-2xl">
+          {location.params.date || new Date().toISOString().slice(0, 10)}
+          の売上データ
+        </h1>
+        <ul class="flex items-center gap-2">
+          <li class="">
+            <Link
+              href={`/dashboard/${getYesterdayFromISOString(
+                location.params.date || new Date().toISOString().slice(0, 10),
+              )}`}
+              class="hover:underline"
+            >
+              前日
+            </Link>
+          </li>
+          <li class="">
+            <Link
+              href={`/dashboard/${new Date().toISOString().slice(0, 10)}`}
+              class="hover:underline"
+            >
+              今日
+            </Link>
+          </li>
+          <li class="">
+            <Link
+              href={`/dashboard/${getTomorrowFromISOString(
+                location.params.date || new Date().toISOString().slice(0, 10),
+              )}`}
+              class="hover:underline"
+            >
+              翌日
+            </Link>
+          </li>
+          <li class="">
+            <Link class="hover:underline" reload>
+              更新
+            </Link>
+          </li>
+        </ul>
+      </div>
       <div class="flex flex-col gap-6 py-6 md:grid md:grid-cols-2 md:gap-12 md:py-12">
         <div class="order-1 flex h-full w-full justify-center md:order-none">
           <SalesChart salesData={salesData} />
@@ -179,12 +223,16 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = {
-  title: 'Welcome to Qwik',
-  meta: [
-    {
-      name: 'description',
-      content: 'Qwik site description',
-    },
-  ],
+export const head: DocumentHead = ({ params }) => {
+  const date = params.date || new Date().toISOString().slice(0, 10);
+
+  return {
+    title: `Dashboard - ${date}`,
+    meta: [
+      {
+        name: 'description',
+        content: `Store Dashboard - ${date}`,
+      },
+    ],
+  };
 };

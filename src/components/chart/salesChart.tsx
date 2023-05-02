@@ -7,7 +7,8 @@ type SalesChartProps = {
 
 export default component$<SalesChartProps>(({ salesData }) => {
   const donutsChart = useSignal<HTMLDivElement>();
-  useVisibleTask$(({ cleanup }) => {
+  useVisibleTask$(({ cleanup, track }) => {
+    track(() => salesData.value.data);
     let chart2: ApexCharts;
     if (donutsChart?.value && salesData.value.data && salesData.value.item) {
       const options = {

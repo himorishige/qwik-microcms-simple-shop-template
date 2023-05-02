@@ -66,3 +66,21 @@ export function transformData(data: any) {
   );
   return newObjects;
 }
+
+export function getTomorrowFromISOString(isoDateString: string): string {
+  const date = new Date(isoDateString);
+  const tomorrow = new Date(date);
+
+  tomorrow.setDate(tomorrow.getDate() + 1);
+
+  return tomorrow.toISOString().slice(0, 10);
+}
+
+export function getYesterdayFromISOString(isoDateString: string): string {
+  const date = new Date(isoDateString);
+  const yesterday = new Date(date);
+
+  yesterday.setDate(yesterday.getDate() - 1);
+
+  return yesterday.toISOString().slice(0, 10);
+}

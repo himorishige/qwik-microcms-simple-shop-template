@@ -159,11 +159,11 @@ export default component$(() => {
           </li>
         </ul>
       </div>
-      <div class="flex flex-col gap-6 py-6 md:grid md:grid-cols-2 md:gap-12 md:py-12">
+      <div class="flex flex-col gap-6 py-6 md:grid md:grid-cols-2 md:py-12">
         <div class="order-1 flex h-full w-full justify-center md:order-none">
           <SalesChart salesData={salesData} />
         </div>
-        <div class="order-3 flex h-full w-full justify-center md:order-none">
+        <div class="order-3 mt-4 flex h-full w-full justify-center md:order-none md:mt-0">
           <WeatherChart
             location={weatherData.value?.location}
             weatherData={weatherData.value?.data}

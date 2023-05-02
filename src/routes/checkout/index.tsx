@@ -121,7 +121,7 @@ export default component$(() => {
   });
 
   return (
-    <div class="bg-white">
+    <div class="min-h-[calc(100dvh-52px-72px)] bg-white">
       <div class="container mx-auto px-4 md:px-0">
         <Clock />
         <Form action={action}>

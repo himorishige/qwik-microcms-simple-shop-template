@@ -117,7 +117,7 @@ export default component$(() => {
   });
 
   return (
-    <div class="container mx-auto px-4 md:px-0">
+    <div class="container mx-auto min-h-[calc(100dvh-52px-72px)] px-4 md:px-0">
       <div class="mt-4 flex items-center justify-between border-b-2 px-2 pb-4">
         <h1 class="text-xl font-bold md:text-2xl">
           {location.params.date || new Date().toISOString().slice(0, 10)}

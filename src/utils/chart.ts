@@ -68,7 +68,7 @@ export function transformData(data: any) {
         price: saleItem.item.price,
         count: saleItem.number,
         total: saleItem.item.price * saleItem.number,
-        createdAt: convertISOStringToCustomFormat(saleItem.item.createdAt),
+        createdAt: convertISOStringToCustomFormat(content.createdAt),
       };
     }),
   );

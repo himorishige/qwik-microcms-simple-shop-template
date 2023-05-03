@@ -196,10 +196,10 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@builder.io/qwik-city@~0.107.0":
-  version "0.107.0"
-  resolved "https://registry.yarnpkg.com/@builder.io/qwik-city/-/qwik-city-0.107.0.tgz#06a6082b158df36bd575d5ac33f97e982bb6b81a"
-  integrity sha512-t64cq3dwhWdCC9ZJhbJ1G4cbnNzjudHBkx/u0qbr6yLP8V6oRk2eJ5iPLq3R5pUqpbonRQUm4PokYB0mJK1Lwg==
+"@builder.io/qwik-city@~1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@builder.io/qwik-city/-/qwik-city-1.0.0.tgz#9fec6b4edeb87b4000c095c086967cd6b1002099"
+  integrity sha512-nHlDsvYHRWpSmRgg3bb93shn0p1OeMLvBYyIINitGDPxRSK1RyddtJXFAE24MlEEwzetF82xSte3SiC55oPUaQ==
   dependencies:
     "@mdx-js/mdx" "2.3.0"
     "@types/mdx" "2.0.5"
@@ -207,10 +207,10 @@
     vfile "5.3.7"
     zod "^3.21.4"
 
-"@builder.io/qwik@0.107.0":
-  version "0.107.0"
-  resolved "https://registry.yarnpkg.com/@builder.io/qwik/-/qwik-0.107.0.tgz#6841a600240ae4f7c54fff632eec6af43c01b1e0"
-  integrity sha512-YcLvM4sW69rKbK+tcOm60+rvbH7j/b3x2m3+dhGQOgyGMWw8WqoCAmr5clF5xONM0pCaOkrh6I3SncRedXFBYw==
+"@builder.io/qwik@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@builder.io/qwik/-/qwik-1.0.0.tgz#0dfa16f11be9df7d1cf5ac91adab04bb915066d0"
+  integrity sha512-U1eTIKTBUiW2dbPMCaTzS7K1bMCI9ovtfsvdduwnVThGXRSrX+v2X4U/UmHHPzfOjC55X5wYLc17cw5EwFBVVA==
 
 "@cloudflare/kv-asset-handler@^0.2.0":
   version "0.2.0"
@@ -1493,10 +1493,10 @@ eslint-config-prettier@^8.8.0:
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.8.0.tgz#bfda738d412adc917fd7b038857110efe98c9348"
   integrity sha512-wLbQiFre3tdGgpDv67NQKnJuTlcUVYHas3k+DZCc2U2BadthoEY4B7hLPvAxaqdyOGCzuLfii2fqGph10va7oA==
 
-eslint-plugin-qwik@0.107.0:
-  version "0.107.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-qwik/-/eslint-plugin-qwik-0.107.0.tgz#c2b4469f407f3cece3d16d764a2a7673607af3e9"
-  integrity sha512-HFIdvvDYAq69fARVIU7zehtu1e12JU0i5T5Ksp7Cnu8pfsMeVRLZ9o7UiFbb0I+IGHIyU34gQ7WOd5wFR6H9aQ==
+eslint-plugin-qwik@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-qwik/-/eslint-plugin-qwik-1.0.0.tgz#4f2b10681fa2cd7f4858d57a0ea8c011974066a4"
+  integrity sha512-IdnMPpVMEkL/QqBEypitdEpKCZWqeu+DSfJi39FGxnCvzsKTAKGv38Ro/+AEfHgYaAV0CH3sxLzxrr05tlG3+g==
   dependencies:
     jsx-ast-utils "^3.3.3"
 

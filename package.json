@@ -22,8 +22,8 @@
     "qwik": "qwik"
   },
   "devDependencies": {
-    "@builder.io/qwik": "0.107.0",
-    "@builder.io/qwik-city": "~0.107.0",
+    "@builder.io/qwik": "1.0.0",
+    "@builder.io/qwik-city": "~1.0.0",
     "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
     "@types/eslint": "8.37.0",
     "@types/node": "^18.16.1",
@@ -32,7 +32,7 @@
     "autoprefixer": "^10.4.14",
     "eslint": "8.39.0",
     "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-qwik": "0.107.0",
+    "eslint-plugin-qwik": "1.0.0",
     "eslint-plugin-tailwindcss": "^3.11.0",
     "postcss": "^8.4.23",
     "prettier": "2.8.8",

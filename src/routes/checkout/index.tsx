@@ -163,7 +163,7 @@ export default component$(() => {
                         <input
                           type="number"
                           class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 focus:border-blue-500 focus:ring-blue-500"
-                          pattern="\d*"
+                          inputMode="numeric"
                           name={item.id}
                           max={99}
                           aria-label={`${item.title}の個数`}

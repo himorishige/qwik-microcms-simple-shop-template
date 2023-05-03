@@ -1,4 +1,5 @@
 import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
+import { useLocation } from '@builder.io/qwik-city';
 import ApexCharts, { type ApexOptions } from 'apexcharts';
 
 type SalesChartProps = {
@@ -6,9 +7,10 @@ type SalesChartProps = {
 };
 
 export default component$<SalesChartProps>(({ salesData }) => {
+  const loc = useLocation();
   const donutsChart = useSignal<HTMLDivElement>();
   useVisibleTask$(({ cleanup, track }) => {
-    track(() => salesData.value.data);
+    track(() => loc.params.date);
     let chart2: ApexCharts;
     if (donutsChart?.value && salesData.value.data && salesData.value.item) {
       const options = {

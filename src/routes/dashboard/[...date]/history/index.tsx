@@ -1,5 +1,5 @@
 import { component$ } from '@builder.io/qwik';
-import { useLocation } from '@builder.io/qwik-city';
+import { useLocation, type DocumentHead } from '@builder.io/qwik-city';
 import { transformData } from '~/utils/chart';
 
 import { useSalesData } from '../layout';
@@ -48,3 +48,17 @@ export default component$(() => {
     </div>
   );
 });
+
+export const head: DocumentHead = ({ params }) => {
+  const date = params.date || new Date().toISOString().slice(0, 10);
+
+  return {
+    title: `History - ${date}`,
+    meta: [
+      {
+        name: 'description',
+        content: `Store History - ${date}`,
+      },
+    ],
+  };
+};

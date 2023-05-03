@@ -23,10 +23,14 @@ export default component$<HeaderProps>(({ shopName }) => {
           </Link>
         </div>
         <div class="ml-auto flex items-center space-x-4">
-          <Link href="/dashboard" class="hover:opacity-80">
+          <Link
+            href="/dashboard"
+            class="hover:opacity-80"
+            aria-label="Dashboard"
+          >
             <Gauge />
           </Link>
-          <Link href="/checkout" class="hover:opacity-80">
+          <Link href="/checkout" class="hover:opacity-80" aria-label="Checkout">
             <Calculator />
           </Link>
         </div>

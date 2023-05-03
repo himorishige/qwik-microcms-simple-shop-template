@@ -5,6 +5,7 @@ import {
   routeLoader$,
   z,
   zod$,
+  type DocumentHead,
 } from '@builder.io/qwik-city';
 import { isServer } from '@builder.io/qwik/build';
 import { createClient } from 'microcms-js-sdk';
@@ -38,7 +39,7 @@ function transformData(obj: OriginalObject): TransformedObject {
       item: key,
       number: parseInt(value),
     }))
-    .filter((item) => item.number > 0); // valueが0のデータを削除
+    .filter((item) => item.number !== 0); // valueが0のデータを削除
 
   return {
     content: {
@@ -49,6 +50,7 @@ function transformData(obj: OriginalObject): TransformedObject {
 }
 
 export const useAddSales = routeAction$(async (data, requestEvent) => {
+  console.log('action');
   const MICROCMS_SERVICE_DOMAIN =
     requestEvent.env.get('MICROCMS_SERVICE_DOMAIN') || '';
   const MICROCMS_API_KEY = requestEvent.env.get('MICROCMS_API_KEY') || '';
@@ -162,9 +164,10 @@ export default component$(() => {
                         <input
                           type="number"
                           class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 focus:border-blue-500 focus:ring-blue-500"
-                          min={0}
                           pattern="\d*"
                           name={item.id}
+                          max={99}
+                          aria-label={`${item.title}の個数`}
                           onChange$={(event) => {
                             cart.data = {
                               ...cart.data,
@@ -224,3 +227,15 @@ export default component$(() => {
     </div>
   );
 });
+
+export const head: DocumentHead = () => {
+  return {
+    title: `Checkout`,
+    meta: [
+      {
+        name: 'description',
+        content: `Store Checkout`,
+      },
+    ],
+  };
+};

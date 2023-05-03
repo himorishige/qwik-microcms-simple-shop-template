@@ -20,6 +20,7 @@ import { useSalesData } from './layout';
 
 export const useWeatherDataLoader = routeLoader$(async (requestEvent) => {
   try {
+    console.time('Execution Time');
     const { config } = await requestEvent.resolveValue(useConfigDataLoader);
 
     if (!config) {
@@ -36,7 +37,7 @@ export const useWeatherDataLoader = routeLoader$(async (requestEvent) => {
       `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_API_KEY}&units=metric&lang=ja&exclude=alerts,minutely,daily`,
     );
     const data = await weatherResponse.json();
-
+    console.timeEnd('Execution Time');
     return {
       data,
       location,

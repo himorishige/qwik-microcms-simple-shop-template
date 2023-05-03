@@ -10,7 +10,7 @@ export default component$<SalesChartProps>(({ salesData }) => {
   const loc = useLocation();
   const donutsChart = useSignal<HTMLDivElement>();
   useVisibleTask$(({ cleanup, track }) => {
-    track(() => loc.params.date);
+    track(() => [loc.params.date, salesData]);
     let chart2: ApexCharts;
     if (donutsChart?.value && salesData.value.data && salesData.value.item) {
       const options = {

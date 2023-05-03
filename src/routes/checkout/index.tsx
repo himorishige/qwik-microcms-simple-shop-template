@@ -39,7 +39,7 @@ function transformData(obj: OriginalObject): TransformedObject {
       item: key,
       number: parseInt(value),
     }))
-    .filter((item) => item.number !== 0); // valueが0のデータを削除
+    .filter((item) => !!(item.number && !Number.isNaN(item.number))); // valueが0のデータを削除
 
   return {
     content: {
@@ -50,7 +50,6 @@ function transformData(obj: OriginalObject): TransformedObject {
 }
 
 export const useAddSales = routeAction$(async (data, requestEvent) => {
-  console.log('action');
   const MICROCMS_SERVICE_DOMAIN =
     requestEvent.env.get('MICROCMS_SERVICE_DOMAIN') || '';
   const MICROCMS_API_KEY = requestEvent.env.get('MICROCMS_API_KEY') || '';

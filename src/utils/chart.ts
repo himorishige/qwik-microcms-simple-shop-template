@@ -52,8 +52,16 @@ export function calculateItemStats(saleData: SaleData, itemTitle: string) {
   return { totalCount: totalCount || 0, totalPrice: totalPrice || 0 };
 }
 
+type NewObjects = {
+  title: string;
+  price: number;
+  count: number;
+  total: number;
+  createdAt: string; // 2023/04/30 18:44:58
+};
+
 export function transformData(data: any) {
-  const newObjects = data.contents.flatMap((content: any) =>
+  const newObjects: NewObjects[] = data.contents.flatMap((content: any) =>
     content.saleItems.map((saleItem: any) => {
       return {
         title: saleItem.item.title,
@@ -64,6 +72,11 @@ export function transformData(data: any) {
       };
     }),
   );
+
+  newObjects.sort((a, b) => {
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
+
   return newObjects;
 }
 

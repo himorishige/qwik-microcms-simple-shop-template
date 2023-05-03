@@ -5,19 +5,18 @@ import {
   useLocation,
   type DocumentHead,
 } from '@builder.io/qwik-city';
-import { createClient } from 'microcms-js-sdk';
 import SalesChart from '~/components/chart/salesChart';
 import WeatherChart from '~/components/chart/weatherChart';
 import { Download } from '~/components/icons/download';
 import { useConfigDataLoader } from '~/routes/layout';
-import type { ItemObject, SaleObject } from '~/types/sale';
 import {
   arrayToCSV,
-  calculateItemStats,
   getTomorrowFromISOString,
   getYesterdayFromISOString,
   transformData,
 } from '~/utils/chart';
+
+import { useSalesData } from './layout';
 
 export const useWeatherDataLoader = routeLoader$(async (requestEvent) => {
   try {
@@ -46,48 +45,6 @@ export const useWeatherDataLoader = routeLoader$(async (requestEvent) => {
     console.log(error);
     return null;
   }
-});
-
-export const useSalesData = routeLoader$(async (requestEvent) => {
-  const pathParams = requestEvent.params;
-  const targetDate = pathParams.date || new Date().toISOString().slice(0, 10);
-
-  const MICROCMS_SERVICE_DOMAIN =
-    requestEvent.env.get('MICROCMS_SERVICE_DOMAIN') || '';
-  const MICROCMS_API_KEY = requestEvent.env.get('MICROCMS_API_KEY') || '';
-  const client = createClient({
-    serviceDomain: MICROCMS_SERVICE_DOMAIN,
-    apiKey: MICROCMS_API_KEY,
-  });
-
-  const data = await client.getList<SaleObject>({
-    endpoint: 'sale',
-    queries: {
-      limit: 9999,
-      filters: `createdAt[begins_with]${targetDate}`,
-    },
-  });
-
-  const item = await client.getList<ItemObject>({
-    endpoint: 'items',
-    queries: {
-      orders: '-price',
-    },
-  });
-
-  const itemReport = item.contents.map((item) => {
-    const calc = calculateItemStats(data, item.title);
-    return {
-      title: item.title,
-      price: item.price,
-      ...calc,
-    };
-  });
-
-  return {
-    data,
-    item: itemReport,
-  };
 });
 
 export default component$(() => {
@@ -153,8 +110,13 @@ export default component$(() => {
             </Link>
           </li>
           <li class="">
-            <Link class="hover:underline" reload>
-              更新
+            <Link
+              href={`/dashboard/${
+                location.params.date || new Date().toISOString().slice(0, 10)
+              }/history`}
+              class="hover:underline"
+            >
+              販売履歴
             </Link>
           </li>
         </ul>

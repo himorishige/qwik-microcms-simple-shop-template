@@ -1,10 +1,14 @@
 import { $, Slot, component$ } from '@builder.io/qwik';
-import { routeLoader$ } from '@builder.io/qwik-city';
+import { routeLoader$, type RequestHandler } from '@builder.io/qwik-city';
 import { createClient } from 'microcms-js-sdk';
 import { useImageProvider, type ImageTransformerProps } from 'qwik-image';
 import Footer from '~/components/footer/footer';
 import Header from '~/components/header/header';
 import type { ConfigObject } from '~/types/config';
+
+export const onGet: RequestHandler = async (requestEvent) => {
+  requestEvent.headers.set('X-My-Custom-Header', 'Hello World');
+};
 
 export const useServerTimeLoader = routeLoader$(() => {
   return {

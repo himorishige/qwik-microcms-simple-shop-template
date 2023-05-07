@@ -59,7 +59,7 @@ export const useConfigDataLoader = routeLoader$(async (requestEvent) => {
     await requestEvent.platform.env.QWIK_STORE_KV.put(
       'config',
       JSON.stringify(config),
-      { expirationTtl: 60 },
+      { expirationTtl: 600 },
     );
 
     return {

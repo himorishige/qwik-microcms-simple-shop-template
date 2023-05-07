@@ -20,7 +20,6 @@ import { useSalesData } from './layout';
 
 export const useWeatherDataLoader = routeLoader$(async (requestEvent) => {
   try {
-    console.time('Execution Time');
     const { config } = await requestEvent.resolveValue(useConfigDataLoader);
 
     if (!config) {
@@ -32,12 +31,30 @@ export const useWeatherDataLoader = routeLoader$(async (requestEvent) => {
     const lon = config.shopPosition?.lon || '139.6917';
     const location = config.location || '東京';
 
+    const cacheData = await requestEvent.platform.env.QWIK_STORE_KV?.get(
+      'weatherData',
+      'json',
+    );
+
+    if (cacheData) {
+      return {
+        data: cacheData,
+        location,
+      };
+    }
+
     const OPENWEATHER_API_KEY = requestEvent.env.get('OPENWEATHER_API_KEY');
     const weatherResponse = await fetch(
       `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_API_KEY}&units=metric&lang=ja&exclude=alerts,minutely,daily`,
     );
     const data = await weatherResponse.json();
-    console.timeEnd('Execution Time');
+
+    await requestEvent.platform.env.QWIK_STORE_KV.put(
+      'weatherData',
+      JSON.stringify(data),
+      { expirationTtl: 600 },
+    );
+
     return {
       data,
       location,

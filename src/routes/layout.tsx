@@ -17,13 +17,23 @@ export const useServerTimeLoader = routeLoader$(() => {
 });
 
 export const useConfigDataLoader = routeLoader$(async (requestEvent) => {
-  // const { QWIK_STORE_KV } = requestEvent.platform as unknown as {
-  //   QWIK_STORE_KV: KVNamespace;
-  // };
+  const cacheData: {
+    shopName: string;
+    location: string | undefined;
+    shopPosition:
+      | {
+          lat: number | undefined;
+          lon: number | undefined;
+        }
+      | undefined;
+  } = await requestEvent.platform.env.QWIK_STORE_KV?.get('config', 'json');
 
-  // const list = await QWIK_STORE_KV.list();
-  const value = await requestEvent.platform.env?.QWIK_STORE_KV?.list();
-  console.log(value?.keys);
+  if (cacheData) {
+    return {
+      config: cacheData,
+    };
+  }
+
   try {
     const MICROCMS_SERVICE_DOMAIN =
       requestEvent.env.get('MICROCMS_SERVICE_DOMAIN') || '';
@@ -45,6 +55,12 @@ export const useConfigDataLoader = routeLoader$(async (requestEvent) => {
         lon: response.shopPosition.longitude,
       },
     };
+
+    await requestEvent.platform.env.QWIK_STORE_KV.put(
+      'config',
+      JSON.stringify(config),
+      { expirationTtl: 60 },
+    );
 
     return {
       config,

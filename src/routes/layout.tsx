@@ -22,7 +22,8 @@ export const useConfigDataLoader = routeLoader$(async (requestEvent) => {
   // };
 
   // const list = await QWIK_STORE_KV.list();
-  console.log(requestEvent.platform.env.QWIK_STORE_KV.list());
+  const value = await requestEvent.platform.env?.QWIK_STORE_KV?.list();
+  console.log(value?.keys);
   try {
     const MICROCMS_SERVICE_DOMAIN =
       requestEvent.env.get('MICROCMS_SERVICE_DOMAIN') || '';

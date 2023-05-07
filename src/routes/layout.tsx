@@ -17,16 +17,10 @@ export const useServerTimeLoader = routeLoader$(() => {
 });
 
 export const useConfigDataLoader = routeLoader$(async (requestEvent) => {
-  const cacheData: {
-    shopName: string;
-    location: string | undefined;
-    shopPosition:
-      | {
-          lat: number | undefined;
-          lon: number | undefined;
-        }
-      | undefined;
-  } = await requestEvent.platform.env.QWIK_STORE_KV?.get('config', 'json');
+  const cacheData = await requestEvent.platform.env.QWIK_STORE_KV?.get(
+    'config',
+    'json',
+  );
 
   if (cacheData) {
     return {
@@ -59,7 +53,7 @@ export const useConfigDataLoader = routeLoader$(async (requestEvent) => {
     await requestEvent.platform.env.QWIK_STORE_KV.put(
       'config',
       JSON.stringify(config),
-      { expirationTtl: 600 },
+      { expirationTtl: 60 },
     );
 
     return {

@@ -32,7 +32,7 @@ export const useWeatherDataLoader = routeLoader$(async (requestEvent) => {
     const location = config.location || '東京';
 
     const cacheData = await requestEvent.platform.env.QWIK_STORE_KV?.get(
-      'weatherData',
+      `weather-${lat}-${lon}`,
       'json',
     );
 
@@ -50,9 +50,9 @@ export const useWeatherDataLoader = routeLoader$(async (requestEvent) => {
     const data = await weatherResponse.json();
 
     await requestEvent.platform.env.QWIK_STORE_KV.put(
-      'weatherData',
+      `weather-${lat}-${lon}`,
       JSON.stringify(data),
-      { expirationTtl: 600 },
+      { expirationTtl: 600 * 3 },
     );
 
     return {

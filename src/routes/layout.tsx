@@ -17,6 +17,11 @@ export const useServerTimeLoader = routeLoader$(() => {
 });
 
 export const useConfigDataLoader = routeLoader$(async (requestEvent) => {
+  // const { QWIK_STORE_KV } = requestEvent.platform as unknown as {
+  //   QWIK_STORE_KV: KVNamespace;
+  // };
+  // const list = await QWIK_STORE_KV.list();
+  console.log(requestEvent.platform);
   try {
     const MICROCMS_SERVICE_DOMAIN =
       requestEvent.env.get('MICROCMS_SERVICE_DOMAIN') || '';

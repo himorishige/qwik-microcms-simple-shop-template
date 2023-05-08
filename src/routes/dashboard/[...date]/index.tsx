@@ -1,4 +1,4 @@
-import { $, component$ } from '@builder.io/qwik';
+import { $, Resource, component$ } from '@builder.io/qwik';
 import {
   Link,
   routeLoader$,
@@ -27,9 +27,9 @@ export const useWeatherDataLoader = routeLoader$(async (requestEvent) => {
     }
 
     // 緯度経度のデフォルト値は東京
-    const lat = config.shopPosition?.lat || '35.6894';
-    const lon = config.shopPosition?.lon || '139.6917';
-    const location = config.location || '東京';
+    const lat = config?.shopPosition?.lat || '35.6894';
+    const lon = config?.shopPosition?.lon || '139.6917';
+    const location = config?.location || '東京';
 
     const cacheData = await requestEvent.platform.env.QWIK_STORE_KV?.get(
       `weather-${lat}-${lon}`,
@@ -54,11 +54,16 @@ export const useWeatherDataLoader = routeLoader$(async (requestEvent) => {
       JSON.stringify(data),
       { expirationTtl: 600 * 3 },
     );
+    const sleep = (msec: number) =>
+      new Promise((resolve) => setTimeout(resolve, msec));
 
-    return {
-      data,
-      location,
-    };
+    return requestEvent.defer(async () => {
+      await sleep(3000);
+      return {
+        data,
+        location,
+      };
+    });
   } catch (error) {
     console.log(error);
     return null;
@@ -144,10 +149,22 @@ export default component$(() => {
           <SalesChart salesData={salesData} />
         </div>
         <div class="order-3 mt-4 flex h-full w-full justify-center md:order-none md:mt-0">
-          <WeatherChart
+          <Resource
+            value={weatherData}
+            onPending={() => <div>loading...</div>}
+            onResolved={(data) => {
+              return (
+                <WeatherChart
+                  location={data?.location}
+                  weatherData={data?.data}
+                />
+              );
+            }}
+          />
+          {/* <WeatherChart
             location={weatherData.value?.location}
             weatherData={weatherData.value?.data}
-          />
+          /> */}
         </div>
         <div class="order-2 mt-8 md:order-none md:col-span-2 md:mt-0">
           <div class="mb-2 flex items-center p-2">

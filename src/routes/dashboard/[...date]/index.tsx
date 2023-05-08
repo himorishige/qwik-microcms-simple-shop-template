@@ -54,11 +54,11 @@ export const useWeatherDataLoader = routeLoader$(async (requestEvent) => {
       JSON.stringify(data),
       { expirationTtl: 600 * 3 },
     );
-    const sleep = (msec: number) =>
-      new Promise((resolve) => setTimeout(resolve, msec));
+    // const sleep = (msec: number) =>
+    //   new Promise((resolve) => setTimeout(resolve, msec));
 
     return requestEvent.defer(async () => {
-      await sleep(3000);
+      // await sleep(3000);
       return {
         data,
         location,

@@ -33,10 +33,6 @@ const createOptions = (data: any) => {
           .map((item: any) => Math.round(item.humidity))
           .slice(0, 8),
       },
-      {
-        name: '降水確率',
-        data: data.hourly.map((item: any) => item.pop * 100).slice(0, 8),
-      },
     ],
     xaxis: {
       categories: data.hourly
@@ -57,13 +53,6 @@ const createOptions = (data: any) => {
         labels: {
           show: false,
         },
-        max: 100,
-      },
-      {
-        labels: {
-          show: false,
-        },
-        min: 0,
         max: 100,
       },
     ],

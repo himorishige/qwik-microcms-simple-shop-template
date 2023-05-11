@@ -196,10 +196,10 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@builder.io/qwik-city@~1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@builder.io/qwik-city/-/qwik-city-1.1.0.tgz#f4025c9fe66e83f3588d8a71d792d924de850ebe"
-  integrity sha512-1j7ofLpqJxVo1Ao+NsVUdE6IE1U2qLOGhlhzxtnZCmZsK5Oll/2rGyfOgkxxTYk0xlDay8SHkJGpF+pAdDByRg==
+"@builder.io/qwik-city@~1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@builder.io/qwik-city/-/qwik-city-1.1.1.tgz#2d8ce4d3dee52eb7bd17308bf06c4330d37ef752"
+  integrity sha512-zF+hCFuugnYAWMG3UGBXo02AZiMpZsTnohCifLM+f0508YHEhWC0QzO2Y1LcyFxo8JVM89uzWNobJMrcF7G3jw==
   dependencies:
     "@mdx-js/mdx" "2.3.0"
     "@types/mdx" "2.0.5"
@@ -207,10 +207,10 @@
     vfile "5.3.7"
     zod "^3.21.4"
 
-"@builder.io/qwik@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@builder.io/qwik/-/qwik-1.1.0.tgz#e3b7b77b615557ebb339cacca53f4b72a18ce36b"
-  integrity sha512-A8PlZi8iQcBLYHmpgRClhLKNM35RVn4wL0Ek6ETRKhH+Oh6iRgN0YcHCQO2APmlc1ajAE4tRfFRH2lroi3nREQ==
+"@builder.io/qwik@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@builder.io/qwik/-/qwik-1.1.1.tgz#6c22d01af7fd68dab5a1714795d2821ea1a9a0c8"
+  integrity sha512-Bv1Ei2kV4glny3W5zQqpz/zwoxqdCcZ03InLyVY61UbnE2ruAZutH3WfGSNt9CjlK7EXHvPOAw0lb3/xWXAPvQ==
 
 "@cloudflare/kv-asset-handler@^0.2.0":
   version "0.2.0"
@@ -1505,10 +1505,10 @@ eslint-config-prettier@^8.8.0:
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.8.0.tgz#bfda738d412adc917fd7b038857110efe98c9348"
   integrity sha512-wLbQiFre3tdGgpDv67NQKnJuTlcUVYHas3k+DZCc2U2BadthoEY4B7hLPvAxaqdyOGCzuLfii2fqGph10va7oA==
 
-eslint-plugin-qwik@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-qwik/-/eslint-plugin-qwik-1.1.0.tgz#d6c8b749f8660e04f8a78cb4331daa91d139beb5"
-  integrity sha512-LN7prCRThRkWr1l5SMHbebwQM8N2VhW52ArzfO7bSpSPR5WQHHqhPuwBMRM4gJJCbOArylr5tGB3/J6fLS7uPA==
+eslint-plugin-qwik@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-qwik/-/eslint-plugin-qwik-1.1.1.tgz#6bfcec33020878f6f29bb3d42e17fa3ed6eec22d"
+  integrity sha512-/8UTrugT0fym9L7gmEzWt30WJCK0bKJFAwaVr/oD4CDfl0s68CDaRWvafTsNHqDSQDVrOtCVW+U51U4zMALKmw==
   dependencies:
     jsx-ast-utils "^3.3.3"
 
@@ -3180,10 +3180,10 @@ queue-microtask@^1.2.2:
   resolved "https://registry.npmjs.org/queue-microtask/-/queue-microtask-1.2.3.tgz"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-qwik-image@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/qwik-image/-/qwik-image-0.0.3.tgz#9760b7cd69ae7a5792f07bfa9e952a6918b06827"
-  integrity sha512-pxcS6TMYOQ/p/v520XUJcGH6VwTGx6ejIyoP+oL2X4drVbx77rzutfhvTZ2UUmZITlisaVdCAmPlUTwKsldOaQ==
+qwik-image@^0.0.4:
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/qwik-image/-/qwik-image-0.0.4.tgz#cc1e7ae3bcd8152b1db99ba794147254880a1e67"
+  integrity sha512-RzIQNWIAOh64tFlJ3oF+FOwN93hoizH+SMcRctMY/BP998nhNQg7xe7rL0qtrFQ7pZOAuUQt7iI3Fnm6e7I1zA==
 
 read-cache@^1.0.0:
   version "1.0.0"
@@ -3713,10 +3713,10 @@ undici@5.20.0:
   dependencies:
     busboy "^1.6.0"
 
-undici@5.22.0:
-  version "5.22.0"
-  resolved "https://registry.npmjs.org/undici/-/undici-5.22.0.tgz"
-  integrity sha512-fR9RXCc+6Dxav4P9VV/sp5w3eFiSdOjJYsbtWfd4s5L5C4ogyuVpdKIVHeW0vV1MloM65/f7W45nR9ZxwVdyiA==
+undici@5.22.1:
+  version "5.22.1"
+  resolved "https://registry.yarnpkg.com/undici/-/undici-5.22.1.tgz#877d512effef2ac8be65e695f3586922e1a57d7b"
+  integrity sha512-Ji2IJhFXZY0x/0tVBXeQwgPlLWw13GVzpsWPQ3rV50IFMMof2I55PZZxtm4P6iNq+L5znYN9nSTAq0ZyE6lSJw==
   dependencies:
     busboy "^1.6.0"
 

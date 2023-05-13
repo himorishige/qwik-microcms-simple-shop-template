@@ -3,6 +3,8 @@ import { Link, type DocumentHead } from '@builder.io/qwik-city';
 import { Calculator } from '~/components/icons/calculator';
 import { Gauge } from '~/components/icons/gauge';
 
+import { useConfigDataLoader } from './layout';
+
 export default component$(() => {
   return (
     <div class="min-h-[calc(100dvh-52px-72px)]">
@@ -38,12 +40,16 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = {
-  title: 'Simple Store Template',
-  meta: [
-    {
-      name: 'description',
-      content: 'Welcome to Simple Store Template',
-    },
-  ],
+export const head: DocumentHead = ({ resolveValue }) => {
+  const { config } = resolveValue(useConfigDataLoader);
+
+  return {
+    title: `${config?.storeName || 'Simple Store Template'}`,
+    meta: [
+      {
+        name: 'description',
+        content: `Welcome to ${config?.storeName || 'Simple Store Template'}`,
+      },
+    ],
+  };
 };

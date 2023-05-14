@@ -24,9 +24,9 @@
     "qwik": "qwik"
   },
   "devDependencies": {
-    "@builder.io/qwik": "1.1.1",
-    "@builder.io/qwik-city": "~1.1.1",
-    "@cloudflare/workers-types": "^4.20230419.0",
+    "@builder.io/qwik": "1.1.2",
+    "@builder.io/qwik-city": "~1.1.2",
+    "@cloudflare/workers-types": "^4.20230511.0",
     "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
     "@types/eslint": "8.37.0",
     "@types/node": "^18.16.1",
@@ -35,7 +35,7 @@
     "autoprefixer": "^10.4.14",
     "eslint": "8.40.0",
     "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-qwik": "1.1.1",
+    "eslint-plugin-qwik": "1.1.2",
     "eslint-plugin-tailwindcss": "^3.11.0",
     "postcss": "^8.4.23",
     "prettier": "2.8.8",

@@ -196,10 +196,10 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@builder.io/qwik-city@~1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@builder.io/qwik-city/-/qwik-city-1.1.1.tgz#2d8ce4d3dee52eb7bd17308bf06c4330d37ef752"
-  integrity sha512-zF+hCFuugnYAWMG3UGBXo02AZiMpZsTnohCifLM+f0508YHEhWC0QzO2Y1LcyFxo8JVM89uzWNobJMrcF7G3jw==
+"@builder.io/qwik-city@~1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@builder.io/qwik-city/-/qwik-city-1.1.2.tgz#759eec236ffa4d03fdfe56d951113f9ac2673743"
+  integrity sha512-rA0Q9c/A6b3qpAI+opizRgwO0rLXvU+AdJomUtnHX4D/H8XZisbCLVLM8hrDmPckmADgNcHMJlxaawiGPgVqaA==
   dependencies:
     "@mdx-js/mdx" "2.3.0"
     "@types/mdx" "2.0.5"
@@ -207,10 +207,10 @@
     vfile "5.3.7"
     zod "^3.21.4"
 
-"@builder.io/qwik@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@builder.io/qwik/-/qwik-1.1.1.tgz#6c22d01af7fd68dab5a1714795d2821ea1a9a0c8"
-  integrity sha512-Bv1Ei2kV4glny3W5zQqpz/zwoxqdCcZ03InLyVY61UbnE2ruAZutH3WfGSNt9CjlK7EXHvPOAw0lb3/xWXAPvQ==
+"@builder.io/qwik@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@builder.io/qwik/-/qwik-1.1.2.tgz#195465e89166a23d5d762cbe6a883f877086214d"
+  integrity sha512-oOif/cXd0EYi+lFprWkGeRoI+9MiUKpdwTqjk19L8OYzTo8XQ+X2OhgBzOkCKjGF32eJdRWYWFXKZyHlhHlg/g==
 
 "@cloudflare/kv-asset-handler@^0.2.0":
   version "0.2.0"
@@ -219,10 +219,10 @@
   dependencies:
     mime "^3.0.0"
 
-"@cloudflare/workers-types@^4.20230419.0":
-  version "4.20230419.0"
-  resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-4.20230419.0.tgz#0d90e06d6ac3fcdd0c26e4c32817918811688c8b"
-  integrity sha512-MfNBlHrI/ekRkbLtdAo23D4hkXF+3QD92OCwuXxCUK73HtMHuBqkMp9T/8KFbKNRCnz7PzUderc7Jr5m3eeW3g==
+"@cloudflare/workers-types@^4.20230511.0":
+  version "4.20230511.0"
+  resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-4.20230511.0.tgz#48f187b35234b9be7c2c6303718584fce8243278"
+  integrity sha512-Br4i/8+t60HDJIo8o7O9Rrmp03bhdejRW9klb0bK9EfG5Ii7qz5G3PJO12gUz+Vu9m1v9tZ9KOh3Gg8oshXtug==
 
 "@esbuild-plugins/node-globals-polyfill@^0.1.1":
   version "0.1.1"
@@ -1505,10 +1505,10 @@ eslint-config-prettier@^8.8.0:
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.8.0.tgz#bfda738d412adc917fd7b038857110efe98c9348"
   integrity sha512-wLbQiFre3tdGgpDv67NQKnJuTlcUVYHas3k+DZCc2U2BadthoEY4B7hLPvAxaqdyOGCzuLfii2fqGph10va7oA==
 
-eslint-plugin-qwik@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-qwik/-/eslint-plugin-qwik-1.1.1.tgz#6bfcec33020878f6f29bb3d42e17fa3ed6eec22d"
-  integrity sha512-/8UTrugT0fym9L7gmEzWt30WJCK0bKJFAwaVr/oD4CDfl0s68CDaRWvafTsNHqDSQDVrOtCVW+U51U4zMALKmw==
+eslint-plugin-qwik@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-qwik/-/eslint-plugin-qwik-1.1.2.tgz#8a783533b102df055fda490cf92a37bed37f011d"
+  integrity sha512-zeMi7uVE50tnfmKUr/g7fznDKZohdHX45CApQP+Uu8tffTe7iHYJQJG0EBrbqF32dTQtrFV/f8KFsgoZV4P9lg==
   dependencies:
     jsx-ast-utils "^3.3.3"
 

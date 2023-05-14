@@ -44,11 +44,11 @@ export const head: DocumentHead = ({ resolveValue }) => {
   const { config } = resolveValue(useConfigDataLoader);
 
   return {
-    title: `${config?.storeName || 'Simple Store Template'}`,
+    title: `${config?.shopName || 'Simple Store Template'}`,
     meta: [
       {
         name: 'description',
-        content: `Welcome to ${config?.storeName || 'Simple Store Template'}`,
+        content: `Welcome to ${config?.shopName || 'Simple Store Template'}`,
       },
     ],
   };

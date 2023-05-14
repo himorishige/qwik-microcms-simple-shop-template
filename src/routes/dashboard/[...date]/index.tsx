@@ -72,8 +72,8 @@ export const useWeatherDataLoader = routeLoader$(async (requestEvent) => {
 
 export default component$(() => {
   const location = useLocation();
-  const weatherData = useWeatherDataLoader();
   const salesData = useSalesData();
+  const weatherData = useWeatherDataLoader();
 
   const downloadHandler = $(() => {
     const csvData = transformData(salesData.value.data);
@@ -152,6 +152,7 @@ export default component$(() => {
           <Resource
             value={weatherData}
             onPending={() => <div>loading...</div>}
+            onRejected={(error) => <div>{error.message}</div>}
             onResolved={(data) => {
               return (
                 <WeatherChart
@@ -161,10 +162,6 @@ export default component$(() => {
               );
             }}
           />
-          {/* <WeatherChart
-            location={weatherData.value?.location}
-            weatherData={weatherData.value?.data}
-          /> */}
         </div>
         <div class="order-2 mt-8 md:order-none md:col-span-2 md:mt-0">
           <div class="mb-2 flex items-center p-2">

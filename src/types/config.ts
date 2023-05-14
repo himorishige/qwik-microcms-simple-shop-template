@@ -8,3 +8,12 @@ export type ConfigObject = {
     longitude?: number;
   };
 };
+
+export type ConfigType = {
+  shopName: string;
+  location: string | undefined;
+  shopPosition: {
+    lat: number | undefined;
+    lon: number | undefined;
+  };
+} | null;

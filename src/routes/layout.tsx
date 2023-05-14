@@ -8,6 +8,7 @@ import type { ConfigObject } from '~/types/config';
 
 export const onGet: RequestHandler = async (requestEvent) => {
   requestEvent.headers.set('X-My-Custom-Header', 'Hello World');
+  return requestEvent.next();
 };
 
 export const useServerTimeLoader = routeLoader$(() => {

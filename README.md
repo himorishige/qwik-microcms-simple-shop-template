@@ -1,4 +1,4 @@
-# QwikとmicroCMSを利用したシンプルな売上管理アプリケーション️
+# シンプルな売上管理アプリケーション️
 
 ![image](https://github.com/himorishige/qwik-microcms-simple-store-template/assets/71954454/4d0bd4e9-2fcc-4792-b27e-f4f0b3304ffb)
 

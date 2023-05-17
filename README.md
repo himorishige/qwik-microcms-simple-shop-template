@@ -1,5 +1,7 @@
 # QwikとmicroCMSを利用したシンプルな売上管理アプリケーション️
 
+![image](https://github.com/himorishige/qwik-microcms-simple-store-template/assets/71954454/4d0bd4e9-2fcc-4792-b27e-f4f0b3304ffb)
+
 QwikとmicroCMSを利用したシンプルな売上管理アプリケーションのテンプレートです。
 町内会や文化祭、フリーマーケットなど小さな店舗での利用を想定しています。
 
@@ -16,6 +18,8 @@ QwikとmicroCMSを利用したシンプルな売上管理アプリケーショ�
 ### microCMS APIキーの権限変更
 
 レジページにて計算、売上のデータをmicroCMSに登録するために販売APIに対してのPOST権限が必要となります。以下の画像と同じように権限を追加設定してください。
+
+![CleanShot 2023-05-17 at 16 14 15](https://github.com/himorishige/qwik-microcms-simple-store-template/assets/71954454/0cb8fb1c-443f-4911-9769-0fb42cb2aabb)
 
 ### OpenWeatherのAPIキー取得
 

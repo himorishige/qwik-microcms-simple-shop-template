@@ -7,7 +7,7 @@ import Header from '~/components/header/header';
 import type { ConfigObject } from '~/types/config';
 
 export const onGet: RequestHandler = async (requestEvent) => {
-  requestEvent.headers.set('X-My-Custom-Header', 'Hello World');
+  requestEvent.headers.set('X-My-Custom-Header', 'Simple Store Template');
   return requestEvent.next();
 };
 

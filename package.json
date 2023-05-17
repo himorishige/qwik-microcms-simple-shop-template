@@ -1,6 +1,6 @@
 {
-  "name": "my-qwik-basic-starter",
-  "description": "App with Routing built-in (recommended)",
+  "name": "qwik-simple-store-template",
+  "description": "QwikとmicroCMSを利用したシンプル売上管理アプリケーション",
   "engines": {
     "node": ">=15.0.0"
   },
@@ -14,12 +14,11 @@
     "deploy": "wrangler pages publish ./dist --branch preview",
     "dev": "vite --mode ssr",
     "dev.debug": "node --inspect-brk ./node_modules/vite/bin/vite.js --mode ssr --force",
-    "dev.wrangler": "wrangler pages dev --local --persist --kv=QWIK_STORE_KV -- npm run dev",
     "fmt": "prettier --write .",
     "fmt.check": "prettier --check .",
     "lint": "eslint \"src/**/*.ts*\"",
     "preview": "qwik build preview && vite preview --open",
-    "preview.wrangler": "qwik build && wrangler pages dev ./dist --local --persist --kv=QWIK_STORE_KV",
+    "serve": "wrangler pages dev ./dist",
     "start": "vite --open --mode ssr",
     "qwik": "qwik"
   },

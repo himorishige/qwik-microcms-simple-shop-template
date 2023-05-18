@@ -69,14 +69,14 @@ export default component$<WeatherChartProps>(
     const myChart = useSignal<HTMLDivElement>();
 
     useVisibleTask$(({ cleanup }) => {
-      let chart1: ApexCharts;
+      let chart: ApexCharts;
       if (myChart?.value) {
         const options = createOptions(weatherData);
-        chart1 = new ApexCharts(myChart.value, options);
-        chart1.render();
+        chart = new ApexCharts(myChart.value, options);
+        chart.render();
       }
       cleanup(() => {
-        chart1.destroy();
+        chart.destroy();
       });
     });
 

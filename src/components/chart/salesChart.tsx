@@ -10,11 +10,11 @@ export default component$<SalesChartProps>(({ salesData }) => {
   const loc = useLocation();
   const donutsChart = useSignal<HTMLDivElement>();
   useVisibleTask$(({ cleanup, track }) => {
-    track(() => [loc.params.date, salesData]);
+    track(() => [loc.params.date, salesData.value.item]);
     let chart2: ApexCharts;
     if (donutsChart?.value && salesData.value.data && salesData.value.item) {
       const options = {
-        series: salesData.value.item.map((item: any) => item.totalPrice),
+        series: salesData.value.item.map((item: any) => item.totalPrice || 0),
         labels: salesData.value.item.map((item: any) => item.title),
         tooltip: {},
         chart: {

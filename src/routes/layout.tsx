@@ -18,16 +18,16 @@ export const useServerTimeLoader = routeLoader$(() => {
 });
 
 export const useConfigDataLoader = routeLoader$(async (requestEvent) => {
-  const cacheData = await requestEvent.platform.env.QWIK_STORE_KV?.get(
-    'config',
-    'json',
-  );
+  // const cacheData = await requestEvent.platform.env.QWIK_STORE_KV?.get(
+  //   'config',
+  //   'json',
+  // );
 
-  if (cacheData) {
-    return {
-      config: cacheData,
-    };
-  }
+  // if (cacheData) {
+  //   return {
+  //     config: cacheData,
+  //   };
+  // }
 
   try {
     const MICROCMS_SERVICE_DOMAIN =
@@ -51,11 +51,11 @@ export const useConfigDataLoader = routeLoader$(async (requestEvent) => {
       },
     };
 
-    await requestEvent.platform.env.QWIK_STORE_KV.put(
-      'config',
-      JSON.stringify(config),
-      { expirationTtl: 60 },
-    );
+    // await requestEvent.platform.env.QWIK_STORE_KV.put(
+    //   'config',
+    //   JSON.stringify(config),
+    //   { expirationTtl: 60 },
+    // );
 
     return {
       config,

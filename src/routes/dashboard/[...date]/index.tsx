@@ -31,17 +31,17 @@ export const useWeatherDataLoader = routeLoader$(async (requestEvent) => {
     const lon = config?.shopPosition?.lon || '139.6917';
     const location = config?.location || '東京';
 
-    const cacheData = await requestEvent.platform.env.QWIK_STORE_KV?.get(
-      `weather-${lat}-${lon}`,
-      'json',
-    );
+    // const cacheData = await requestEvent.platform.env.QWIK_STORE_KV?.get(
+    //   `weather-${lat}-${lon}`,
+    //   'json',
+    // );
 
-    if (cacheData) {
-      return {
-        data: cacheData,
-        location,
-      };
-    }
+    // if (cacheData) {
+    //   return {
+    //     data: cacheData,
+    //     location,
+    //   };
+    // }
 
     const OPENWEATHER_API_KEY = requestEvent.env.get('OPENWEATHER_API_KEY');
     const weatherResponse = await fetch(
@@ -49,11 +49,11 @@ export const useWeatherDataLoader = routeLoader$(async (requestEvent) => {
     );
     const data = await weatherResponse.json();
 
-    await requestEvent.platform.env.QWIK_STORE_KV.put(
-      `weather-${lat}-${lon}`,
-      JSON.stringify(data),
-      { expirationTtl: 600 * 3 },
-    );
+    // await requestEvent.platform.env.QWIK_STORE_KV.put(
+    //   `weather-${lat}-${lon}`,
+    //   JSON.stringify(data),
+    //   { expirationTtl: 600 * 3 },
+    // );
     // const sleep = (msec: number) =>
     //   new Promise((resolve) => setTimeout(resolve, msec));
 

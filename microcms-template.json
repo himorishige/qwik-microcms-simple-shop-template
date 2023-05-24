@@ -3,7 +3,7 @@
   "plan": "Hobby",
   "schema": [
     {
-      "apiId": "API#54655ae1-13c0-4ba9-a605-86aefdfa82a9",
+      "apiId": "API#f0cbac8a-400f-43c7-8819-5efe79b6f72d",
       "apiName": "店舗設定",
       "apiEndpoint": "config",
       "apiType": "PAGE",
@@ -14,67 +14,12 @@
           "name": "店舗名",
           "kind": "text",
           "required": true
-        },
-        {
-          "idValue": "p-TK-Zs2L1",
-          "fieldId": "location",
-          "name": "所在地",
-          "kind": "custom",
-          "customFieldCreatedAt": "2023-05-02T02:11:44.420Z"
-        },
-        {
-          "idValue": "lYZHWAqW3R",
-          "fieldId": "shopPosition",
-          "name": "店舗座標",
-          "kind": "custom",
-          "customFieldCreatedAt": "2023-05-01T07:36:24.776Z"
         }
       ],
-      "customFields": [
-        {
-          "apiId": "API#54655ae1-13c0-4ba9-a605-86aefdfa82a9",
-          "createdAt": "2023-05-01T07:36:24.776Z",
-          "fieldId": "area",
-          "name": "地域設定",
-          "fields": [
-            {
-              "idValue": "rSRHztAwDs",
-              "fieldId": "latitude",
-              "name": "緯度",
-              "kind": "number"
-            },
-            {
-              "idValue": "wPGk2aJ73L",
-              "fieldId": "longitude",
-              "name": "経度",
-              "kind": "number"
-            }
-          ],
-          "position": [[null, "rSRHztAwDs"], ["wPGk2aJ73L"]],
-          "updatedAt": "2023-05-02T02:11:16.458Z",
-          "viewerGroup": "wCQ"
-        },
-        {
-          "apiId": "API#54655ae1-13c0-4ba9-a605-86aefdfa82a9",
-          "createdAt": "2023-05-02T02:11:44.420Z",
-          "fieldId": "location",
-          "name": "所在地",
-          "fields": [
-            {
-              "idValue": "6_UJu8rfJK",
-              "fieldId": "location",
-              "name": "所在地",
-              "kind": "text"
-            }
-          ],
-          "position": [["6_UJu8rfJK"]],
-          "updatedAt": "2023-05-02T02:12:45.431Z",
-          "viewerGroup": "wCQ"
-        }
-      ]
+      "customFields": []
     },
     {
-      "apiId": "API#82546b2b-8f1c-449a-a277-7a3b9c79f7b2",
+      "apiId": "API#39d6961e-2377-444f-aa44-373fd0c5068e",
       "apiName": "販売",
       "apiEndpoint": "sale",
       "apiType": "LIST",
@@ -95,7 +40,7 @@
       ],
       "customFields": [
         {
-          "apiId": "API#82546b2b-8f1c-449a-a277-7a3b9c79f7b2",
+          "apiId": "API#39d6961e-2377-444f-aa44-373fd0c5068e",
           "createdAt": "2023-04-30T08:02:06.669Z",
           "fieldId": "items",
           "name": "販売商品",
@@ -105,7 +50,7 @@
               "fieldId": "item",
               "name": "商品",
               "kind": "relation",
-              "referenceKey": "API#bf187630-67b4-4cca-b6fd-f862fc256cf0"
+              "referenceKey": "API#744f4b92-6308-49c7-af58-460b0a857289"
             },
             {
               "idValue": "g3nSP90i4F",
@@ -121,7 +66,7 @@
       ]
     },
     {
-      "apiId": "API#bf187630-67b4-4cca-b6fd-f862fc256cf0",
+      "apiId": "API#744f4b92-6308-49c7-af58-460b0a857289",
       "apiName": "商品",
       "apiEndpoint": "items",
       "apiType": "LIST",

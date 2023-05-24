@@ -1,99 +1,24 @@
-import { $, Resource, component$ } from '@builder.io/qwik';
-import {
-  Link,
-  routeLoader$,
-  useLocation,
-  type DocumentHead,
-} from '@builder.io/qwik-city';
+import { $, component$ } from '@builder.io/qwik';
+import { useLocation, type DocumentHead } from '@builder.io/qwik-city';
 import SalesChart from '~/components/chart/salesChart';
-import WeatherChart from '~/components/chart/weatherChart';
 import { Download } from '~/components/icons/download';
-import { useConfigDataLoader } from '~/routes/layout';
 import {
-  arrayToCSV,
+  downloadCsv,
   getTomorrowFromISOString,
   getYesterdayFromISOString,
-  transformData,
 } from '~/utils/chart';
 
 import { useSalesData } from './layout';
 
-export const useWeatherDataLoader = routeLoader$(async (requestEvent) => {
-  try {
-    const { config } = await requestEvent.resolveValue(useConfigDataLoader);
-
-    if (!config) {
-      throw new Error('Config is not found');
-    }
-
-    // 緯度経度のデフォルト値は東京
-    const lat = config?.shopPosition?.lat || '35.6894';
-    const lon = config?.shopPosition?.lon || '139.6917';
-    const location = config?.location || '東京';
-
-    // const cacheData = await requestEvent.platform.env.QWIK_STORE_KV?.get(
-    //   `weather-${lat}-${lon}`,
-    //   'json',
-    // );
-
-    // if (cacheData) {
-    //   return {
-    //     data: cacheData,
-    //     location,
-    //   };
-    // }
-
-    const OPENWEATHER_API_KEY = requestEvent.env.get('OPENWEATHER_API_KEY');
-    const weatherResponse = await fetch(
-      `https://api.openweathermap.org/data/3.0/onecall?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_API_KEY}&units=metric&lang=ja&exclude=alerts,minutely,daily`,
-    );
-    const data = await weatherResponse.json();
-
-    // await requestEvent.platform.env.QWIK_STORE_KV.put(
-    //   `weather-${lat}-${lon}`,
-    //   JSON.stringify(data),
-    //   { expirationTtl: 600 * 3 },
-    // );
-    // const sleep = (msec: number) =>
-    //   new Promise((resolve) => setTimeout(resolve, msec));
-
-    return requestEvent.defer(async () => {
-      // await sleep(3000);
-      return {
-        data,
-        location,
-      };
-    });
-  } catch (error) {
-    console.log(error);
-    return null;
-  }
-});
-
 export default component$(() => {
   const location = useLocation();
   const salesData = useSalesData();
-  const weatherData = useWeatherDataLoader();
 
   const downloadHandler = $(() => {
-    const csvData = transformData(salesData.value.data);
-    const csv = arrayToCSV(csvData);
-    const filename = `sales_${
-      location.params.date || new Date().toISOString().slice(0, 10)
-    }.csv`;
-
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-
-    if (link.download !== undefined) {
-      const url = URL.createObjectURL(blob);
-      link.setAttribute('href', url);
-      link.setAttribute('download', filename);
-      link.style.visibility = 'hidden';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    }
+    downloadCsv(
+      salesData.value.data,
+      location.params.date || new Date().toISOString().slice(0, 10),
+    );
   });
 
   return (
@@ -104,63 +29,57 @@ export default component$(() => {
           の売上データ
         </h1>
         <ul class="mt-2 flex items-center justify-center gap-3 md:mt-0 md:justify-end">
-          <li class="">
-            <Link
+          <li>
+            <a
               href={`/dashboard/${getYesterdayFromISOString(
                 location.params.date || new Date().toISOString().slice(0, 10),
               )}`}
               class="hover:underline"
             >
               前日
-            </Link>
+            </a>
           </li>
-          <li class="">
-            <Link
+          <li>
+            <a
               href={`/dashboard/${new Date().toISOString().slice(0, 10)}`}
               class="hover:underline"
             >
               今日
-            </Link>
+            </a>
           </li>
-          <li class="">
-            <Link
+          <li>
+            <a
               href={`/dashboard/${getTomorrowFromISOString(
                 location.params.date || new Date().toISOString().slice(0, 10),
               )}`}
               class="hover:underline"
             >
               翌日
-            </Link>
+            </a>
           </li>
-          <li class="">
-            <Link
+          <li>
+            <a
               href={`/dashboard/${
                 location.params.date || new Date().toISOString().slice(0, 10)
               }/history`}
               class="hover:underline"
             >
               販売履歴
-            </Link>
+            </a>
           </li>
         </ul>
       </div>
       <div class="flex flex-col gap-6 py-6 md:grid md:grid-cols-2 md:py-12">
         <div class="order-1 flex h-full w-full justify-center md:order-none">
-          <SalesChart salesData={salesData} />
+          <SalesChart
+            title="本日の販売データ"
+            salesData={salesData.value.itemReport}
+          />
         </div>
         <div class="order-3 mt-4 flex h-full w-full justify-center md:order-none md:mt-0">
-          <Resource
-            value={weatherData}
-            onPending={() => <div>loading...</div>}
-            onRejected={(error) => <div>{error.message}</div>}
-            onResolved={(data) => {
-              return (
-                <WeatherChart
-                  location={data?.location}
-                  weatherData={data?.data}
-                />
-              );
-            }}
+          <SalesChart
+            title="昨日の販売データ"
+            salesData={salesData.value.prevItemReport}
           />
         </div>
         <div class="order-2 mt-8 md:order-none md:col-span-2 md:mt-0">
@@ -184,7 +103,7 @@ export default component$(() => {
                 </tr>
               </thead>
               <tbody class="text-sm md:text-base">
-                {salesData.value.item
+                {salesData.value.itemReport
                   .sort((a, b) => b.totalPrice - a.totalPrice)
                   .map((item, index) => {
                     return (

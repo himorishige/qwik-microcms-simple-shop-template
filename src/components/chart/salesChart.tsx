@@ -2,13 +2,14 @@ import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
 import ApexCharts, { type ApexOptions } from 'apexcharts';
 
 type SalesChartProps = {
+  title: string;
   salesData: any;
 };
 
 const createOptions = (salesData: any) => {
   return {
-    series: salesData.value.item.map((item: any) => item.totalPrice || 0),
-    labels: salesData.value.item.map((item: any) => item.title),
+    series: salesData.map((item: any) => item.totalPrice || 0),
+    labels: salesData.map((item: any) => item.title),
     tooltip: {},
     chart: {
       type: 'donut',
@@ -41,12 +42,11 @@ const createOptions = (salesData: any) => {
   } satisfies ApexOptions;
 };
 
-export default component$<SalesChartProps>(({ salesData }) => {
+export default component$<SalesChartProps>(({ salesData, title }) => {
   const donutsChart = useSignal<HTMLDivElement>();
-  useVisibleTask$(({ cleanup, track }) => {
-    track(() => salesData.value.item);
+  useVisibleTask$(({ cleanup }) => {
     let chart: ApexCharts;
-    if (donutsChart?.value && salesData.value.data && salesData.value.item) {
+    if (donutsChart?.value && salesData) {
       const options = createOptions(salesData);
       chart = new ApexCharts(donutsChart.value, options);
       chart.render();
@@ -57,7 +57,7 @@ export default component$<SalesChartProps>(({ salesData }) => {
   });
   return (
     <div class="grow">
-      <p class="mb-4 text-center font-bold">商品別の販売区分</p>
+      <p class="mb-4 text-center font-bold">{title}</p>
       <div ref={donutsChart} id="donutsChart" class="grow"></div>
     </div>
   );

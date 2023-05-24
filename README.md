@@ -13,7 +13,6 @@ QwikとmicroCMSを利用したシンプルな売上管理アプリケーショ�
 利用にあたって下記の事前準備が必要となります。
 
 - microCMS APIキーの権限変更
-- OpenWeatherのAPIキー取得
 
 ### microCMS APIキーの権限変更
 
@@ -21,17 +20,11 @@ QwikとmicroCMSを利用したシンプルな売上管理アプリケーショ�
 
 ![CleanShot 2023-05-17 at 16 14 15](https://github.com/himorishige/qwik-microcms-simple-store-template/assets/71954454/0cb8fb1c-443f-4911-9769-0fb42cb2aabb)
 
-### OpenWeatherのAPIキー取得
-
-天気予報を表示するためにOpenWeatherのOne Call API 3.0のAPIキーが必要となります。下記からアカウントの作成しAPIキーを取得してください。
-[Weather API \- OpenWeatherMap](https://openweathermap.org/api)
-
 ## 環境変数の設定
 
 プロジェクトディレクトリ内に`.env.local`ファイルを作成の上下記必要事項を記述してください。
 
 ```shell:.env.local
-OPENWEATHER_API_KEY=OpenWeatherのAPIキー
 MICROCMS_SERVICE_DOMAIN=microCMSのサービスドメイン名
 MICROCMS_API_KEY=microCMSのAPIキー
 ```

@@ -21,7 +21,7 @@ export const useSalesData = routeLoader$(async (requestEvent) => {
       apiKey: MICROCMS_API_KEY,
     });
 
-    const data = await client.getList<SaleObject>({
+    const getData = client.getList<SaleObject>({
       endpoint: 'sale',
       queries: {
         limit: 9999,
@@ -29,7 +29,7 @@ export const useSalesData = routeLoader$(async (requestEvent) => {
       },
     });
 
-    const prevData = await client.getList<SaleObject>({
+    const getPrevData = client.getList<SaleObject>({
       endpoint: 'sale',
       queries: {
         limit: 9999,
@@ -41,12 +41,18 @@ export const useSalesData = routeLoader$(async (requestEvent) => {
       },
     });
 
-    const item = await client.getList<ItemObject>({
+    const getItem = client.getList<ItemObject>({
       endpoint: 'items',
       queries: {
         orders: '-price',
       },
     });
+
+    const [data, prevData, item] = await Promise.all([
+      getData,
+      getPrevData,
+      getItem,
+    ]);
 
     const itemReport = item.contents.map((item) => {
       const calc = calculateItemStats(data, item.title);

@@ -78,7 +78,7 @@ export default component$(() => {
         </div>
         <div class="order-3 mt-4 flex h-full w-full justify-center md:order-none md:mt-0">
           <SalesChart
-            title="昨日の販売データ"
+            title="前日の販売データ"
             salesData={salesData.value.prevItemReport}
           />
         </div>

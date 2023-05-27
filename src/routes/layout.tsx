@@ -1,4 +1,4 @@
-import { $, Slot, component$ } from '@builder.io/qwik';
+import { $, Slot, component$, useOnDocument } from '@builder.io/qwik';
 import { routeLoader$, type RequestHandler } from '@builder.io/qwik-city';
 import { createClient } from 'microcms-js-sdk';
 import { useImageProvider, type ImageTransformerProps } from 'qwik-image';
@@ -59,16 +59,24 @@ export default component$(() => {
     imageTransformer$,
   });
 
+  useOnDocument(
+    'load',
+    $(() => {
+      const toastElement = document.createElement('wc-toast');
+      document.getElementById('wc-toast')!.appendChild(toastElement);
+    }),
+  );
+
   const configData = useConfigDataLoader();
 
   return (
     <>
-      <wc-toast></wc-toast>
       <Header shopName={configData.value.config?.shopName} />
       <main class="container mx-auto">
         <Slot />
       </main>
       <Footer />
+      <div id="wc-toast"></div>
     </>
   );
 });

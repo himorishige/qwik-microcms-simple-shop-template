@@ -50,46 +50,63 @@ function transformData(obj: OriginalObject): TransformedObject {
 }
 
 export const useAddSales = routeAction$(async (data, requestEvent) => {
-  const MICROCMS_SERVICE_DOMAIN =
-    requestEvent.env.get('MICROCMS_SERVICE_DOMAIN') || '';
-  const MICROCMS_API_KEY = requestEvent.env.get('MICROCMS_API_KEY') || '';
+  try {
+    const MICROCMS_SERVICE_DOMAIN =
+      requestEvent.env.get('MICROCMS_SERVICE_DOMAIN') || '';
+    const MICROCMS_API_KEY = requestEvent.env.get('MICROCMS_API_KEY') || '';
 
-  const client = createClient({
-    serviceDomain: MICROCMS_SERVICE_DOMAIN,
-    apiKey: MICROCMS_API_KEY,
-  });
+    const client = createClient({
+      serviceDomain: MICROCMS_SERVICE_DOMAIN,
+      apiKey: MICROCMS_API_KEY,
+    });
 
-  const response = await client.create({
-    endpoint: 'sale',
-    ...transformData(data),
-  });
+    const response = await client.create({
+      endpoint: 'sale',
+      ...transformData(data),
+    });
 
-  return {
-    success: Boolean(response.id),
-    date: new Date().toISOString(),
-  };
+    return {
+      success: Boolean(response.id),
+      date: new Date().toISOString(),
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      date: new Date().toISOString(),
+    };
+  }
 }, zod$(z.record(z.string(), z.string())));
 
 export const useItemData = routeLoader$(async (requestEvent) => {
-  const MICROCMS_SERVICE_DOMAIN =
-    requestEvent.env.get('MICROCMS_SERVICE_DOMAIN') || '';
-  const MICROCMS_API_KEY = requestEvent.env.get('MICROCMS_API_KEY') || '';
+  try {
+    const MICROCMS_SERVICE_DOMAIN =
+      requestEvent.env.get('MICROCMS_SERVICE_DOMAIN') || '';
+    const MICROCMS_API_KEY = requestEvent.env.get('MICROCMS_API_KEY') || '';
 
-  const client = createClient({
-    serviceDomain: MICROCMS_SERVICE_DOMAIN,
-    apiKey: MICROCMS_API_KEY,
-  });
+    const client = createClient({
+      serviceDomain: MICROCMS_SERVICE_DOMAIN,
+      apiKey: MICROCMS_API_KEY,
+    });
 
-  const items = await client.getList<SaleItemObject>({
-    endpoint: 'items',
-    queries: {
-      limit: 9999,
-    },
-  });
+    const items = await client.getList<SaleItemObject>({
+      endpoint: 'items',
+      queries: {
+        limit: 9999,
+      },
+    });
 
-  return {
-    items,
-  };
+    return {
+      items,
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      items: {
+        contents: [],
+      },
+    };
+  }
 });
 
 type ValueObject = {
@@ -116,8 +133,12 @@ export default component$(() => {
       return;
     }
 
-    if (action.value?.success) {
+    if (action.value?.success === true) {
       toast.success('データを追加しました');
+    }
+
+    if (action.value?.success === false) {
+      toast.error('データの追加に失敗しました');
     }
   });
 

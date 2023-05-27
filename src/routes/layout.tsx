@@ -6,9 +6,16 @@ import Footer from '~/components/footer/footer';
 import Header from '~/components/header/header';
 import type { ConfigObject } from '~/types/config';
 
-export const onGet: RequestHandler = async (requestEvent) => {
-  requestEvent.headers.set('X-My-Custom-Header', 'Simple Store Template');
-  return requestEvent.next();
+export const onGet: RequestHandler = async ({ cacheControl, url, headers }) => {
+  headers.set('X-My-Custom-Header', 'Simple Store Template');
+  // Only our homepage is public and should be CDN cached. Other pages are unique per visitor
+  if (url.pathname === '/') {
+    cacheControl({
+      public: true,
+      maxAge: 5,
+      staleWhileRevalidate: 60 * 60 * 24 * 365,
+    });
+  }
 };
 
 export const useServerTimeLoader = routeLoader$(() => {

@@ -1,0 +1,32 @@
+{
+  "name": "microCMS Templates",
+  "build": {
+    "dockerfile": "./Dockerfile"
+  },
+
+  "portsAttributes": {
+    "5173": {
+      "label": "Application",
+      "onAutoForward": "openPreview"
+    }
+  },
+
+  "forwardPorts": [5173],
+
+  "postCreateCommand": "yarn install && yarn build",
+
+  "waitFor": "postCreateCommand",
+
+  "postAttachCommand": {
+    "Server": "yarn start --host"
+  },
+
+  "customizations": {
+    "codespaces": {
+      "openFiles": ["README.md"]
+    },
+    "vscode": {
+      "extensions": ["esbenp.prettier-vscode"]
+    }
+  }
+}

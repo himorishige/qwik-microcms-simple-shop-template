@@ -3,6 +3,7 @@ import { useLocation, type DocumentHead } from '@builder.io/qwik-city';
 import SalesChart from '~/components/chart/salesChart';
 import { Download } from '~/components/icons/download';
 import {
+  convertTimestampToOffsetDate,
   downloadCsv,
   getTomorrowFromISOString,
   getYesterdayFromISOString,
@@ -17,7 +18,7 @@ export default component$(() => {
   const downloadHandler = $(() => {
     downloadCsv(
       salesData.value.data,
-      location.params.date || new Date().toISOString().slice(0, 10),
+      location.params.date || convertTimestampToOffsetDate(9, 'YYYY-MM-DD'),
     );
   });
 
@@ -25,14 +26,16 @@ export default component$(() => {
     <div class="container mx-auto min-h-[calc(100dvh-52px-72px)] px-4 md:px-0">
       <div class="mt-4 border-b-2 px-2 pb-4 md:flex md:items-center md:justify-between">
         <h1 class="text-center text-xl font-bold md:text-left md:text-2xl">
-          {location.params.date || new Date().toISOString().slice(0, 10)}{' '}
+          {location.params.date ||
+            convertTimestampToOffsetDate(9, 'YYYY-MM-DD')}{' '}
           の売上データ
         </h1>
         <ul class="mt-2 flex items-center justify-center gap-3 md:mt-0 md:justify-end">
           <li>
             <a
               href={`/dashboard/${getYesterdayFromISOString(
-                location.params.date || new Date().toISOString().slice(0, 10),
+                location.params.date ||
+                  convertTimestampToOffsetDate(9, 'YYYY-MM-DD'),
               )}`}
               class="hover:underline"
             >
@@ -41,7 +44,10 @@ export default component$(() => {
           </li>
           <li>
             <a
-              href={`/dashboard/${new Date().toISOString().slice(0, 10)}`}
+              href={`/dashboard/${convertTimestampToOffsetDate(
+                9,
+                'YYYY-MM-DD',
+              )}`}
               class="hover:underline"
             >
               今日
@@ -50,7 +56,7 @@ export default component$(() => {
           <li>
             <a
               href={`/dashboard/${getTomorrowFromISOString(
-                location.params.date || new Date().toISOString().slice(0, 10),
+                convertTimestampToOffsetDate(9, 'YYYY-MM-DD'),
               )}`}
               class="hover:underline"
             >
@@ -60,7 +66,8 @@ export default component$(() => {
           <li>
             <a
               href={`/dashboard/${
-                location.params.date || new Date().toISOString().slice(0, 10)
+                location.params.date ||
+                convertTimestampToOffsetDate(9, 'YYYY-MM-DD')
               }/history`}
               class="hover:underline"
             >
@@ -137,7 +144,7 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = ({ params }) => {
-  const date = params.date || new Date().toISOString().slice(0, 10);
+  const date = params.date || convertTimestampToOffsetDate(9, 'YYYY-MM-DD');
 
   return {
     title: `Dashboard - ${date}`,

@@ -9,8 +9,17 @@ export function convertUnixTimestampToLocalTime(unixTimestamp: number): string {
   return `${formattedHours}時`;
 }
 
-export function convertISOStringToCustomFormat(isoString: string): string {
+export function convertISOStringToCustomFormat(
+  isoString: string,
+  offsetHours?: number,
+): string {
   const date = new Date(isoString);
+
+  // If offsetHours is provided, adjust the date.
+  if (offsetHours !== undefined) {
+    date.setHours(date.getHours() + offsetHours);
+  }
+
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
@@ -60,7 +69,7 @@ type NewObjects = {
   createdAt: string; // 2023/04/30 18:44:58
 };
 
-export function transformData(data: any) {
+export function transformData(data: any, offsetHours?: number) {
   const newObjects: NewObjects[] = data.contents.flatMap((content: any) =>
     content.saleItems.map((saleItem: any) => {
       return {
@@ -68,7 +77,10 @@ export function transformData(data: any) {
         price: saleItem.item.price,
         count: saleItem.number,
         total: saleItem.item.price * saleItem.number,
-        createdAt: convertISOStringToCustomFormat(content.createdAt),
+        createdAt: convertISOStringToCustomFormat(
+          content.createdAt,
+          offsetHours,
+        ),
       };
     }),
   );
@@ -142,6 +154,40 @@ export function getFormattedTimeRange(
 
   // Return the formatted string
   return `${fieldName}[greater_than]${start}[and]${fieldName}[less_than]${end}`;
+}
+type DateFormat = 'YYYY-MM-DD' | 'YYYY-MM';
+
+export function convertTimestampToOffsetDate(
+  offsetHours: number,
+  format: DateFormat,
+  timestamp?: number,
+): string {
+  // If timestamp is not provided, use the current time.
+  if (timestamp === undefined) {
+    timestamp = Date.now();
+  }
+
+  // Create a Date object from the timestamp.
+  const date = new Date(timestamp);
+
+  // Apply the time zone offset (converted to minutes and then to milliseconds).
+  date.setMinutes(date.getMinutes() + offsetHours * 60);
+
+  // Extract the year, month, and day.
+  const year = date.getUTCFullYear();
+  const month = date.getUTCMonth() + 1; // Months are 0-based in JavaScript.
+  const day = date.getUTCDate();
+
+  // Pad the month and day with leading zeros if necessary.
+  const paddedMonth = month < 10 ? '0' + month : '' + month;
+  const paddedDay = day < 10 ? '0' + day : '' + day;
+
+  // Return the appropriate format.
+  if (format === 'YYYY-MM-DD') {
+    return `${year}-${paddedMonth}-${paddedDay}`;
+  } else {
+    return `${year}-${paddedMonth}`;
+  }
 }
 
 export function downloadCsv(data: any, date: string) {

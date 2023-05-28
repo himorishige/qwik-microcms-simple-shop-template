@@ -4,13 +4,14 @@ import { createClient } from 'microcms-js-sdk';
 import type { ItemObject, SaleObject } from '~/types/sale';
 import {
   calculateItemStats,
+  convertTimestampToOffsetDate,
   getFormattedTimeRange,
   getYesterdayFromISOString,
 } from '~/utils/chart';
 
 export const useSalesData = routeLoader$(async (requestEvent) => {
   const pathParams = requestEvent.params;
-  const date = pathParams.date || new Date().toISOString().slice(0, 10);
+  const date = pathParams.date || convertTimestampToOffsetDate(9, 'YYYY-MM-DD');
 
   try {
     const MICROCMS_SERVICE_DOMAIN =
@@ -25,7 +26,7 @@ export const useSalesData = routeLoader$(async (requestEvent) => {
       endpoint: 'sale',
       queries: {
         limit: 9999,
-        filters: getFormattedTimeRange('createdAt', date, 9),
+        filters: getFormattedTimeRange('createdAt', date, 0),
       },
     });
 

@@ -1,18 +1,18 @@
 import { component$ } from '@builder.io/qwik';
 import { useLocation, type DocumentHead } from '@builder.io/qwik-city';
-import { transformData } from '~/utils/chart';
+import { convertTimestampToOffsetDate, transformData } from '~/utils/chart';
 
 import { useSalesData } from '../layout';
 
 export default component$(() => {
   const location = useLocation();
   const salesData = useSalesData();
-  const historyData = transformData(salesData.value.data);
+  const historyData = transformData(salesData.value.data, 9);
 
   return (
     <div class="container mx-auto min-h-[calc(100dvh-52px-72px)] p-4 md:px-0">
       <h1 class="mb-4 text-center text-xl font-bold md:text-left md:text-2xl">
-        {location.params.date || new Date().toISOString().slice(0, 10)}{' '}
+        {location.params.date || convertTimestampToOffsetDate(9, 'YYYY-MM-DD')}{' '}
         の販売履歴
       </h1>
       <div class="relative overflow-x-auto rounded">
@@ -50,7 +50,7 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = ({ params }) => {
-  const date = params.date || new Date().toISOString().slice(0, 10);
+  const date = params.date || convertTimestampToOffsetDate(9, 'YYYY-MM-DD');
 
   return {
     title: `History - ${date}`,

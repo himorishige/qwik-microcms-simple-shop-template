@@ -1,7 +1,7 @@
 import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
 
 export default component$(() => {
-  const clockState = useSignal(new Date().toLocaleString());
+  const clockState = useSignal('');
   useVisibleTask$(({ cleanup }) => {
     const clock = setInterval(() => {
       clockState.value = new Date().toLocaleString();
@@ -10,9 +10,5 @@ export default component$(() => {
       clearInterval(clock);
     });
   });
-  return (
-    <div class="pt-2 text-right text-sm">
-      {clockState.value || new Date().toLocaleString()}
-    </div>
-  );
+  return <div class="pt-2 text-right text-sm">{clockState.value || '...'}</div>;
 });

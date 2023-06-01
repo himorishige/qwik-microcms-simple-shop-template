@@ -46,7 +46,8 @@ const createOptions = (salesData: ChartData[]) => {
 
 export default component$<SalesChartProps>(({ salesData, title }) => {
   const donutsChart = useSignal<HTMLDivElement>();
-  useVisibleTask$(({ cleanup }) => {
+  useVisibleTask$(({ cleanup, track }) => {
+    track(() => salesData);
     let chart: ApexCharts | undefined;
 
     if (chart) {

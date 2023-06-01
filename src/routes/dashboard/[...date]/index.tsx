@@ -1,5 +1,5 @@
 import { $, component$ } from '@builder.io/qwik';
-import { useLocation, type DocumentHead } from '@builder.io/qwik-city';
+import { Link, useLocation, type DocumentHead } from '@builder.io/qwik-city';
 import SalesChart from '~/components/chart/salesChart';
 import { Download } from '~/components/icons/download';
 import {
@@ -32,7 +32,7 @@ export default component$(() => {
         </h1>
         <ul class="mt-2 flex items-center justify-center gap-3 md:mt-0 md:justify-end">
           <li>
-            <a
+            <Link
               href={`/dashboard/${getYesterdayFromISOString(
                 location.params.date ||
                   convertTimestampToOffsetDate(9, 'YYYY-MM-DD'),
@@ -40,10 +40,10 @@ export default component$(() => {
               class="hover:underline"
             >
               前日
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               href={`/dashboard/${convertTimestampToOffsetDate(
                 9,
                 'YYYY-MM-DD',
@@ -51,17 +51,17 @@ export default component$(() => {
               class="hover:underline"
             >
               今日
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               href={`/dashboard/${getTomorrowFromISOString(
                 convertTimestampToOffsetDate(9, 'YYYY-MM-DD'),
               )}`}
               class="hover:underline"
             >
               翌日
-            </a>
+            </Link>
           </li>
           <li>
             <a

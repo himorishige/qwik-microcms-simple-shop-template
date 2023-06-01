@@ -1,15 +1,17 @@
 import { component$, useSignal, useVisibleTask$ } from '@builder.io/qwik';
 import ApexCharts, { type ApexOptions } from 'apexcharts';
+import type { ChartData } from '~/types/sale';
 
 type SalesChartProps = {
   title: string;
   salesData: any;
 };
 
-const createOptions = (salesData: any) => {
+const createOptions = (salesData: ChartData[]) => {
+  const sortData = salesData.sort((a, b) => a.title.localeCompare(b.title));
   return {
-    series: salesData.map((item: any) => item.totalPrice || 0),
-    labels: salesData.map((item: any) => item.title),
+    series: sortData.map((item: any) => item.totalPrice || 0),
+    labels: sortData.map((item: any) => item.title),
     tooltip: {},
     chart: {
       type: 'donut',
@@ -45,14 +47,19 @@ const createOptions = (salesData: any) => {
 export default component$<SalesChartProps>(({ salesData, title }) => {
   const donutsChart = useSignal<HTMLDivElement>();
   useVisibleTask$(({ cleanup }) => {
-    let chart: ApexCharts;
-    if (donutsChart?.value && salesData) {
+    let chart: ApexCharts | undefined;
+
+    if (chart) {
+      chart.updateOptions(createOptions(salesData));
+    } else if (donutsChart?.value && salesData) {
       const options = createOptions(salesData);
       chart = new ApexCharts(donutsChart.value, options);
       chart.render();
     }
     cleanup(() => {
-      chart.destroy();
+      if (chart) {
+        chart.destroy();
+      }
     });
   });
   return (

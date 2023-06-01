@@ -1,4 +1,4 @@
-import type { MicroCMSListContent } from "microcms-js-sdk";
+import type { MicroCMSListContent } from 'microcms-js-sdk';
 
 export type SaleItemObject = {
   title: string;
@@ -27,3 +27,18 @@ export type ItemObject = {
   title: string;
   price: number;
 } & MicroCMSListContent;
+
+export type ChartData = {
+  title: string;
+  price: number;
+  totalCount: number;
+  totalPrice: number;
+};
+
+export type HistoryItem = {
+  title: string;
+  price: number;
+  count: number;
+  total: number;
+  createdAt: string;
+};
